@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "net.minestom"
-version = System.getenv("TAG_VERSION") ?: "${libs.versions.minecraft.get()}-dev"
+version = System.getenv("TAG_VERSION") ?: "${libs.versions.minecraft.get()}-dev-SNAPSHOT"
 description = "Generator for Minecraft game data values"
 
 java {
@@ -109,6 +109,13 @@ publishing.publications.create<MavenPublication>("maven") {
             system.set("Github Actions")
             url.set("https://github.com/minestom/MinestomDataGenerator/actions")
         }
+    }
+}
+
+publishing.repositories {
+    maven("https://nexus.darkcube.eu/repository/dasbabypixel") {
+        name = "DasBabyPixel"
+        credentials(PasswordCredentials::class)
     }
 }
 
